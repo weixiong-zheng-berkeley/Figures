@@ -7,3 +7,4 @@
 *.bbl
 *.nav
 *.out
+.DS_Store
