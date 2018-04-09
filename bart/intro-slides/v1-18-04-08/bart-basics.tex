@@ -1,0 +1,113 @@
+\documentclass[8pt]{beamer}
+
+%for printing or having a crappy pdf reader backup
+%\documentclass[handout]{beamer}
+\mode<presentation>
+\usetheme{Madrid}
+
+\AtBeginSection[]{
+	\begin{frame}
+		\vfill
+		\centering
+		\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+			\usebeamerfont{title}\insertsectionhead\par%
+		\end{beamercolorbox}
+		\vfill
+	\end{frame}
+}
+%\usepackage[UTF8]{ctex}
+%\usecolortheme[RGB={80,0,0}]{structure}
+\usecolortheme[RGB={0,128,128}]{structure}
+\useoutertheme{miniframes}
+\useinnertheme{default}
+\usepackage{color}
+%\usepackage[table]{xcolor}
+\definecolor{Maroon}{RGB}{80,0,0}
+\definecolor{DarkGreen}{rgb}{0.0, 0.5, 0.0}
+\definecolor{BurntOrange}{RGB}{204,85,0}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{verbatim}
+\usepackage{wasysym}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{colortbl}
+\usepackage{mathtools}
+%\usepackage[retainorgcmds]{IEEEtrantools}
+\usepackage{wrapfig}
+\usepackage[figurename=,tablename=]{caption}
+\usepackage{multirow}
+\setbeamercolor{normal text}{fg=black}
+\setbeamercovered{dynamic}
+\beamertemplatetransparentcovereddynamicmedium
+%\usepackage{chronology}
+\setbeamertemplate{caption}[numbered]
+\usepackage{colortbl}
+\newcommand {\mathsym}[1]{{}}
+\newcommand {\unicode}{{}}
+\newcommand{\om}{\boldsymbol{\Omega}}
+\newcommand{\etal}{{\it et al.\,}}
+\newcolumntype{L}{>{\centering\arraybackslash}m{3cm}}
+\newcommand{\tcr}[1]{\textcolor{red}{#1}}
+%Creating a norm command
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%Allow page breaks within align
+\allowdisplaybreaks
+%Code
+\usepackage{listings}
+\usepackage{epstopdf}
+\usepackage{pdfpages}
+\usepackage{bm}
+\usepackage{ulem}
+\newlength \figwidth
+\setlength \figwidth {0.5\textwidth}
+
+
+\input{./def.tex}
+\begin{document}
+%	
+
+\addtobeamertemplate{block begin}{\vspace*{-3pt}}{}
+\addtobeamertemplate{block end}{}{\vspace*{-3pt}}
+
+\title[CDFEM]{Bay-Area Radiation Transport (BART), a Research-purpose Parallel Transport Code Framework }
+\author[Zheng]{{\bf\textit{Weixiong Zheng}}\inst{1},\ Joshua Rehak\inst{1},\ Rachel Slaybaugh\inst{1}
+%	 \\ PhD Commitees : Dr. Ryan G. McClarren (Chair)\\
+%	Dr. Jim E. Morel\\
+%	Dr. Marvin L. Adams\\
+%	Dr. Jean-Luc Guermond
+	}
+\institute[UC Berkeley]{\inst{1}{Nuclear Engineering, University of California, Berkeley}\\ }
+\date[April, 2018]
+
+{
+\setbeamertemplate{headline}[default] 
+\begin{frame}
+\vspace{-1.1cm}
+	\begin{figure}[t]
+		\centering
+			\includegraphics[width=.25\textwidth]{graphic/ucbseal.png}
+	\end{figure}
+\vspace{-0.75cm}
+\titlepage
+\end{frame}
+}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\include{sections/sec-introductions}
+\include{sections/sec-physics-math}
+\include{sections/sec-fe-la}
+\include{sections/sec-meshing}
+\include{sections/sec-test-driven-dev}
+\include{sections/sec-conclusions}
+
+
+
+\end{document}

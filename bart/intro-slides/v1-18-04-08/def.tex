@@ -1,0 +1,636 @@
+%
+%=================================================================================================
+% new commands
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\newcommand{\nc}{\newcommand}
+\newcommand{\rt}{R_t}
+%
+% Ways of grouping things
+%
+\newcommand{\bracket}[1]{\left[ #1 \right]}
+\newcommand{\bracet}[1]{\left\{ #1 \right\}}
+\newcommand{\fn}[1]{\left( #1 \right)}
+\newcommand{\ave}[1]{\left\langle #1 \right\rangle}
+%
+% Derivative forms
+%
+\newcommand{\dx}[1]{\,d#1}
+\newcommand{\dxdy}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\dxdt}[1]{\frac{\partial #1}{\partial t}}
+\newcommand{\dxdz}[1]{\frac{\partial #1}{\partial z}}
+\newcommand{\dfdt}[1]{\frac{\partial}{\partial t} \fn{#1}}
+\newcommand{\dfdz}[1]{\frac{\partial}{\partial z} \fn{#1}}
+\newcommand{\ddt}[1]{\frac{\partial}{\partial t} #1}
+\newcommand{\ddz}[1]{\frac{\partial}{\partial z} #1}
+\newcommand{\dd}[2]{\frac{\partial}{\partial #1} #2}
+\newcommand{\ddx}[1]{\frac{\partial}{\partial x} #1}
+\newcommand{\ddy}[1]{\frac{\partial}{\partial y} #1}
+%
+% Vector forms
+%
+%\renewcommand{\vec}[1]{\ensuremath{\stackrel{\rightarrow}{#1}}}
+%\renewcommand{\div}{\ensuremath{\vec{\nabla} \cdot}}
+%\newcommand{\grad}{\ensuremath{\vec{\nabla}}}
+
+\renewcommand{\div}{\vec{\nabla}\! \cdot \!}
+\newcommand{\grad}{\vec{\nabla}}
+\newcommand{\oa}[1]{\fn{\frac{1}{3}\hat{\Omega}\!\cdot\!\overrightarrow{A_{#1}}}}
+
+%
+% Equation beginnings and endings
+%
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\beas}{\begin{eqnarray*}}
+	\newcommand{\eeas}{\end{eqnarray*}}
+\newcommand{\bdm}{\begin{displaymath}}
+\newcommand{\edm}{\end{displaymath}}
+%
+% Equation punctuation
+%
+\newcommand{\pec}{\hspace{0.25in},}
+\newcommand{\pep}{\hspace{0.25in}.}
+\newcommand{\pev}{\hspace{0.25in}}
+%
+% Equation labels and references, figure references, table references
+%
+\newcommand{\LEQ}[1]{\label{eq:#1}}
+\newcommand{\EQ}[1]{Eq.~(\ref{eq:#1})}
+\newcommand{\EQS}[1]{Eqs.~(\ref{eq:#1})}
+\newcommand{\REQ}[1]{\ref{eq:#1}}
+\newcommand{\LFI}[1]{\label{fi:#1}}
+\newcommand{\FI}[1]{Fig.~\ref{fi:#1}}
+\newcommand{\RFI}[1]{\ref{fi:#1}}
+\newcommand{\LTA}[1]{\label{ta:#1}}
+\newcommand{\TA}[1]{Table~\ref{ta:#1}}
+\newcommand{\RTA}[1]{\ref{ta:#1}}
+
+%
+% List beginnings and endings
+%
+\newcommand{\bl}{\bss\begin{itemize}}
+	\newcommand{\el}{\vspace{-.5\baselineskip}\end{itemize}\ess}
+\newcommand{\benu}{\bss\begin{enumerate}}
+	\newcommand{\eenu}{\vspace{-.5\baselineskip}\end{enumerate}\ess}
+%
+% Figure and table beginnings and endings
+%
+\newcommand{\bfg}{\begin{figure}}
+	\newcommand{\efg}{\end{figure}}
+\newcommand{\bt}{\begin{table}}
+	\newcommand{\et}{\end{table}}
+%
+% Tabular and center beginnings and endings
+%
+\newcommand{\bc}{\begin{center}}
+	\newcommand{\ec}{\end{center}}
+\newcommand{\btb}{\begin{center}\begin{tabular}}
+		\newcommand{\etb}{\end{tabular}\end{center}}
+%
+% Single space command
+%
+%\newcommand{\bss}{\begin{singlespace}}
+%\newcommand{\ess}{\end{singlespace}}
+\newcommand{\bss}{\singlespacing}
+\newcommand{\ess}{\doublespacing}
+%
+%---New environment "arbspace". (modeled after singlespace environment
+%                                in Doublespace.sty)
+%   The baselinestretch only takes effect at a size change, so do one.
+%
+\def\arbspace#1{\def\baselinestretch{#1}\@normalsize}
+\def\endarbspace{}
+\newcommand{\bas}{\begin{arbspace}}
+	\newcommand{\eas}{\end{arbspace}}
+%
+% An explanation for a function
+%
+\newcommand{\explain}[1]{\mbox{\hspace{2em} #1}}
+%
+% Quick commands for symbols
+%
+\newcommand{\keig}{$k$-eigenvalue}
+\newcommand{\resi}{R_\mm{i}}
+\newcommand{\sigp}{\sigma_\mm{p}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\third}{\frac{1}{3}}
+\newcommand{\twothird}{\frac{2}{3}}
+\newcommand{\fourth}{\frac{1}{4}}
+\newcommand{\mdot}{\dot{m}}
+\newcommand{\ten}[1]{\times 10^{#1}\,}
+\newcommand{\cL}{{\cal L}}
+\newcommand{\cD}{{\cal D}}
+\newcommand{\cF}{{\cal F}}
+\newcommand{\cE}{{\cal E}}
+\renewcommand{\Re}{\mbox{Re}}
+\newcommand{\Ma}{\mbox{Ma}}
+\newcommand{\qscati}{q_\mm{ti}}
+\newcommand{\qscat}{q_\mm{s}}
+\newcommand{\volint}[1]{\left(#1\right)_\md}
+\newcommand{\volintz}[1]{\left(#1\right)_{\mathcal{D}_\mm{i0}}}
+\newcommand{\volinto}[1]{\left(#1\right)_{\mathcal{D}_\mm{i1}}}
+\newcommand{\volinti}[1]{\left(#1\right)_\dii}
+\newcommand{\faceintin}[2]{\lb{#1}\rb_{#2}^-}
+\newcommand{\faceintout}[2]{\lb{#1}\rb_{#2}^+}
+\newcommand{\faceintfp}[2]{\lb{#1}\rb_{#2}}
+
+%
+% Inclusion of Graphics Data
+%
+%\input{psfig}
+%\psfiginit
+%
+% More Quick Commands
+%
+
+\newcommand{\bi}{\begin{itemize}}
+	\newcommand{\ei}{\end{itemize}}
+\newcommand{\ben}{\begin{enumerate}}
+	\newcommand{\een}{\end{enumerate}}
+\newcommand{\dxi}{\Delta x_i}
+\newcommand{\dyj}{\Delta y_j}
+\newcommand{\ts}[1]{\textstyle #1}
+\newcommand{\tss}{\textstyle\ }
+
+\newcommand{\bu}{\boldsymbol{u}}
+\newcommand{\ber}{\boldsymbol{e}}
+\newcommand{\br}{\boldsymbol{r}}
+\newcommand{\bo}{\boldsymbol{\Omega}}
+
+\newcommand{\bn}{\boldsymbol{\nabla}}
+
+% DGFEM commands
+\newcommand{\jmp}[1]{[\![{#1}]\!]}                     % jump
+\newcommand{\mvl}[1]{\{\!\!\{#1\}\!\!\}}             % mean value
+
+
+\newcommand{\boxedeqn}[1]{%
+	\[\fbox{%
+		\addtolength{\linewidth}{-2\fboxsep}%
+		\addtolength{\linewidth}{-2\fboxrule}%
+		\begin{minipage}{\linewidth}%
+		\begin{equation}#1\end{equation}%
+		\end{minipage}%
+	}\]%
+}
+\newcommand{\mboxed}[1]{\boxed{\phantom{#1}}}
+\newcommand{\ud}{\,\mathrm{d}}
+
+% keff
+\newcommand{\keff}{\ensuremath{k_{\textit{eff}}}\xspace}
+
+% margin par
+\newcommand{\mt}[1]{\marginpar{ {\footnotesize #1} }}
+
+% shortcut for aposterio in italics
+\newcommand{\apost}{\textit{a posteriori\xspace}}
+\newcommand{\Apost}{\textit{A posteriori}\xspace}
+
+% shortcut for multi-group
+\newcommand{\mg}{\mathrm{g}}
+\newcommand{\Mg}{Multigroup\xspace}
+\newcommand{\ho}{higher-order\xspace}
+\newcommand{\Ho}{Higher-order\xspace}
+\newcommand{\HO}{Higher-Order\xspace}
+\newcommand{\HObig}{HIGHER-ORDER\xspace}
+\newcommand{\Mgbig}{MULTIGROUP\xspace}
+\newcommand{\sn}{S$_N$}
+\newcommand{\pn}{P$_N$}
+\newcommand{\dn}{D$_N$}
+\newcommand{\tpn}{T\pn}
+\newcommand{\nfpn}{NF\pn}
+\newcommand{\ldag}{\lop^\dagger}
+\newcommand{\lop}{\mathcal{L}}
+\newcommand{\mv}{\mathcal{V}}
+\newcommand{\mj}{{\Gamma}}
+\newcommand{\lopv}{\lop v}
+\newcommand{\lopp}{\lop\psi}
+\newcommand{\elv}{\left(\omen v+\st v\right)}
+\newcommand{\elp}{\left(\omen\psi+\st\psi\right)}
+\newcommand{\rst}{\frac{1}{\st}}
+
+\newcommand{\bfscr}[1]{\bm{\mathcal{#1}}}
+\newcommand{\bst}{\bm{\Sigma}_\mathrm{t}}
+\newcommand{\vq}{\vec{Q}}
+\newcommand{\bsigs}{{\bf S}}
+
+\newcommand{\plm}[2]{\phi_{{#1}}^{{#2}}}
+\newcommand{\cplm}[2]{\Phi_{{#1}}^{{#2}}}
+
+% shortcut for domain notation
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\Sp}{\mathcal{S}}
+
+% shortcut for xuthus
+\newcommand{\psc}[1]{{\sc {#1}}}
+\newcommand{\xuthus}{\psc{xuthus}\xspace}
+
+% vector shortcuts
+\newcommand{\vo}{\vec{\Omega}}
+\newcommand{\vr}{\vec{r}}
+\newcommand{\vn}{\vec{n}}
+\newcommand{\vnk}{\vec{\mathbf{n}}}
+
+% extra space
+\newcommand{\qq}{\quad\quad}
+
+% sign function
+\DeclareMathOperator{\sgn}{sgn}
+
+
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\newcommand{\ensuretext}[1]{\ensuremath{\text{#1}}}
+\newcommand{\Rmnumb}[1]{\ensuretext{\Rmnum{#1}}}
+
+% common reference commands
+\newcommand{\eqt}[1]{Eq.~(\ref{#1})}                     % equation
+\newcommand{\fig}[1]{Fig.~\ref{#1}}                      % figure
+\newcommand{\tbl}[1]{Table~\ref{#1}}                     % table
+\newcommand{\app}[1]{Appendix~\ref{#1}}                  % appendix
+
+
+% for mathematica notebook
+\newcommand{\IndentingNewLine}{ \\ }
+
+
+\newcommand{\rhs}{right-hand-side\xspace}
+\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
+
+\newenvironment{myverbatim}%            To change the pseudocode font
+{\par\noindent%
+	\rule[0pt]{\linewidth}{0.2pt}
+	\vspace*{-9pt}
+	\linespread{0.0}\small\verbatim}%
+{\rule[-5pt]{\linewidth}{0.2pt}\endverbatim}
+
+\newenvironment{myverbatim1}%            To change the pseudocode font
+{\par\noindent%
+	\rule[0pt]{\linewidth}{0.2pt}
+	\vspace*{-9pt}
+	\linespread{1.0}\scriptsize\verbatim}%
+{\rule[-5pt]{\linewidth}{0.2pt}\endverbatim}
+
+%\newcommand{\theHalgorithm}{\arabic{algorithm}} % remove the error of algorithm+hyperref
+
+\newcommand{\bchi}{{\bm \chi}}
+\newcommand{\bchig}{{\bchi}_\mathrm{g}}
+\newcommand{\sigf}{\sigma_\mathrm{f}}
+
+\newcommand{\st}{\sigma_\mathrm{t}}
+\newcommand{\sti}{\sigma_\mathrm{ti}}
+\newcommand{\vi}{v_\mathrm{i}}
+\newcommand{\pii}{\psi_\mathrm{i}}
+\newcommand{\si}{\mathcal{S}_\mathrm{i}}
+\newcommand{\lopi}{\mathcal{L}_\mathrm{i}}
+\newcommand{\loppi}{\mathcal{L}_\mathrm{i}\psi_\mathrm{i}}
+\newcommand{\mvi}{\mv_\mathrm{i}}
+
+\newcommand{\sigeff}{\sigma_\mathrm{eff}}
+\newcommand{\pfpn}{\psi_{\mathrm{FP}_N}}
+\newcommand{\pnfpn}{\psi_{\mathrm{NFP}_N}}
+\newcommand{\ppn}{\psi_{\mathrm{P}_N}}
+\newcommand{\phifpn}{\phi_{l,\mathrm{FP}_N}^m}
+\newcommand{\dino}[1]{\mathcal{D}_\mm{i#1}}
+\newcommand{\nul}{\nu_l}
+
+\DeclareMathAlphabet\mathbfscr{OMS}{cmsy}{b}{n}
+
+\newcommand{\lth}{l^\mathrm{th}}
+\newcommand{\delt}{\Delta t}
+\newcommand{\delx}{\Delta x}
+
+\newcommand{\pht}{\phi^*}
+\newcommand{\phc}{\phi_\mm{c}}
+\newcommand{\phd}{\phi_\mm{d}}
+\newcommand{\phtc}{\pht_\mm{c}}
+\newcommand{\phtd}{\pht_\mm{d}}
+
+\newcommand{\psti}{\pst_\mm{i}}
+\newcommand{\psii}{\psi_\mm{i}}
+\newcommand{\psij}{\psi_\mm{j}}
+\newcommand{\psiinc}[1]{\psi^\mathrm{inc}_{{#1}}}
+\newcommand{\vp}[1]{\vec{\phi}^{({#1})}}
+\newcommand{\vphi}{\vec{\phi}}
+
+\newcommand{\vcphi}{\vec{\Phi}}
+%\newcommand{\sn}{S$_N$}
+\newcommand{\omen}{\ome\cdot\nabla}
+\newcommand{\dpsi}{\nabla\psi}
+\newcommand{\dpst}{\nabla\pst}
+
+\newcommand{\vh}{V_h}
+\newcommand{\quand}{\quad\mathrm{and}\quad}
+\newcommand{\ointd}{\int\limits_{\pd}ds\ }
+\newcommand{\brackthick}[2]{\left\langle#1,#2\right\rangle_\Gamma}
+
+\newcommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+\newcommand{\TAMU}{Texas A\&M University}
+\newcommand{\ddxcs}{\sigma(E'\to E,~\mu)}
+\newcommand{\sigt}{\sigma_\mathrm{t}}
+\newcommand{\sigs}{\sigma_\mathrm{s}}
+\newcommand{\siga}{\sigma_\mathrm{a}}
+\newcommand{\ai}{I}
+\newcommand{\cv}{C_v}
+\newcommand{\Dt}{\Delta t}
+\newcommand{\ppt}[1]{\frac{\partial{#1}}{\partial t}}
+\newcommand{\bd}{\mathbf{D}}
+\newcommand{\pwr}[2]{{#1}_{#2}}
+%\newcommand{\jump}[1]{\ensuremath{\left[\!\left[#1\right]\!\right]} }
+\newcommand{\jump}[1]{\ensuremath{\left\llbracket{#1}\right\rrbracket} }
+\newcommand{\jjump}[1]{\left[{#1}\right]}
+\newcommand{\dome}{d\Omega}
+\newcommand{\ointfp}{\int\limits_{4\pi}\dome\ }
+\newcommand{\intfp}{\int\limits_{4\pi}\dome\ }
+
+\newcommand{\intin}{\int\limits_{\ndo<0}\dome\ }
+\newcommand{\intdin}{\int\limits_{\ndo<0}\dome\ \int\limits_{\pd}ds\ }
+\newcommand{\intdout}{\int\limits_{\ndo>0}\dome\ \int\limits_{\pd}ds\ }
+\newcommand{\rcm}{cm$^{-1}$}
+\newcommand{\intout}{\int\limits_{\ndo>0}\dome\ }
+\newcommand{\intini}{\int\limits_{\nido<0}\dome\ }
+\newcommand{\intouti}{\int\limits_{\nido>0}\dome\ }
+\newcommand{\nonedo}{\vec{n}_1\cdot\ome}
+\newcommand{\ntwodo}{\vec{n}_2\cdot\ome}
+\newcommand{\absnonedo}{\left|\vec{n}_1\cdot\ome\right|}
+\newcommand{\absntwodo}{\left|\vec{n}_2\cdot\ome\right|}
+\newcommand{\intinone}{\int\limits_{\nonedo<0}\dome\ }
+\newcommand{\intoutone}{\int\limits_{\nonedo>0}\dome\ }
+\newcommand{\intintwo}{\int\limits_{\ntwodo<0}\dome\ }
+\newcommand{\intouttwo}{\int\limits_{\ntwodo>0}\dome\ }
+\newcommand{\intg}{\int\limits_\mathcal{F} ds\ }
+\newcommand{\ii}[2]{I_{\mathrm{#1}_N-\mathrm{#2}_N}}
+\newcommand{\omem}{\vec{\Omega}_\mathrm{m}}
+\newcommand{\ndom}{\ndo_\mathrm{m}}
+\newcommand{\absndom}{\left|\ndom\right|}
+\newcommand{\wm}{w_\mathrm{m}}
+\newcommand{\qfp}{\frac{Q}{\fp}}
+\newcommand{\rlm}{R_l^m(\ome)}
+
+\newcommand{\md}{\mathcal{D}}
+
+\newcommand{\cmcube}{cm^3}
+\newcommand{\oetwo}{O(\epsilon^2)}
+\newcommand{\bsa}{\Sigma_\mathrm{a}}
+
+\newcommand{\bp}{{\bf N}}
+\newcommand{\bki}{\bf I}
+\newcommand{\bq}{\vec{\mathcal{Q}}}
+\newcommand{\bj}{\vec{\mathcal{J}}_{\mathrm{inc}}}
+
+\newcommand{\vectr}{\vec{R}^\top(\ome)}
+\newcommand{\vecr}{\vec{R}(\ome)}
+\newcommand{\vectp}{\overrightarrow{\Phi}^\top}
+\newcommand{\vecp}{\overrightarrow{\Phi}}
+\newcommand{\tm}{$\times$}
+\newcommand{\lp}{\mathbf{L}^+}
+\newcommand{\lm}{\mathbf{L}^-}
+\newcommand{\lpm}{\mathbf{L}^\pm}
+\newcommand{\sv}{\mathcal{V}}
+\newcommand{\phim}{\overrightarrow\Phi^-}
+\newcommand{\phip}{\overrightarrow\Phi^+}
+\newcommand{\psim}{\psi^-}
+\newcommand{\psip}{\psi^+}
+\newcommand{\phims}{\overrightarrow\Phi^{-*}}
+\newcommand{\phips}{\overrightarrow\Phi^{+*}}
+\newcommand{\psims}{\psi^{-*}}
+\newcommand{\psips}{\psi^{+*}}
+\newcommand{\sss}[1]{S$_{#1}$}
+\newcommand{\pp}[1]{P$_{#1}$}
+\newcommand{\on}{\Omega_n}
+\newcommand{\uu}{\mathbf{U}}
+\newcommand{\ut}{\mathbf{U}^\top}
+\newcommand{\lamp}{{\Lambda}^+}
+\newcommand{\lamm}{{\Lambda}^-}
+\newcommand{\mmp}{\mathbf{M}^+}
+\newcommand{\mmm}{\mathbf{M}^-}
+\newcommand{\psigp}{\psi_\mathrm{g}'}
+\newcommand{\phig}{\phi_\mathrm{g}}
+\newcommand{\psig}{\psi_\mathrm{g}}
+\newcommand{\stg}{\sigma_\mathrm{t,g}}
+\newcommand{\sigfg}{\sigma_\mathrm{f,g}}
+\newcommand{\sigfgp}{\sigma_\mathrm{f,g'}}
+\newcommand{\chig}{{\bm \chi}_\mathrm{g}}
+\newcommand{\sigsgg}{\sigma_{s,g'\to g}}
+\newcommand{\scrb}{\mathcal{B}}
+\newcommand{\dr}{d\vec{r}}
+\newcommand{\pst}{\psi^*}
+\newcommand{\mm}[1]{\mathrm{{#1}}}
+
+\newcommand{\fp}{4\pi}
+
+\newcommand{\phigp}{\phi_{\mathrm{g}'}}
+\newcommand{\qg}{{{Q}}_\mathrm{g}}
+
+\newcommand{\ppz}{\partial_x}%{\frac{\partial}{\partial x}}
+\newcommand{\ppzt}{\frac{\partial^2}{\partial x^2}}
+\newcommand{\phii}[1]{\phi_\ensuremath{{#1}}}
+\newcommand{\pud}[2]{\phi_{#1}^{(#2)}}
+\newcommand{\px}{\frac{\partial}{\partial x}}
+\newcommand{\py}{\frac{\partial}{\partial y}}
+\newcommand{\pz}{\frac{\partial}{\partial z}}
+
+\newcommand{\alm}[2]{A_{{#1}}^{{#2}}}
+\newcommand{\blm}[2]{B_{{#1}}^{{#2}}}
+\newcommand{\clm}[2]{C_{{#1}}^{{#2}}}
+\newcommand{\dlm}[2]{D_{{#1}}^{{#2}}}
+\newcommand{\elm}[2]{E_{{#1}}^{{#2}}}
+\newcommand{\flm}[2]{F_{{#1}}^{{#2}}}
+
+\newcommand{\vv}{\vec{v}}
+\newcommand{\vvt}{\vv^\top}
+\newcommand{\vex}{\vec{e}_\chi}
+\newcommand{\ven}{\vec{n}}
+\newcommand{\achi}{{\bf A}_\chi}
+\newcommand{\sach}{\left|{\bf \mathcal{A}}_\chi\right|}
+\newcommand{\vpb}{\vphi_\mathrm{b}}
+\newcommand{\nchi}{\nabla_\chi}
+\newcommand{\ngam}{\nabla_\gamma}
+\newcommand{\bkt}{{\bf T}_{\chi,\gamma}}
+
+\newcommand{\nno}{\nonumber}
+
+\newcommand{\de}{\Delta E_\mathrm{g}}
+
+\newcommand{\pxt}{\frac{\partial^2}{\partial x^2}}
+\newcommand{\stt}{\st^2}
+\newcommand{\dst}{\frac{\partial\st}{\partial x}}
+\newcommand{\tp}[1]{TP$_{#1}$}
+
+\newcommand{\actp}[1]{ac{T^4}^{(#1)}}
+\newcommand{\actf}{acT^4}
+% chapter 4 least-squares derivations
+\newcommand{\ld}{L^\dagger}
+\newcommand{\jj}[1]{\mathcal{J}_{{#1}}}
+
+%chapter 3 filtered pn
+\newcommand{\rv}{\vec{r}}
+
+%chapter 6 CDLS
+
+
+
+\newcommand{\qsl}{\qs^\mathrm{LS}}
+\newcommand{\done}{{\mathcal{D}_\mathrm{1}}}
+\newcommand{\dtwo}{{\mathcal{D}_\mathrm{2}}}
+\newcommand{\pd}{{\partial\mathcal{D}}}
+\newcommand{\pdone}{{\mathcal{F}_\mathrm{1}}}
+\newcommand{\pdtwo}{{\mathcal{F}_\mathrm{2}}}
+\newcommand{\intli}[1]{\int\limits_{{#1}}}
+\newcommand{\ointli}[1]{\int\limits_{{#1}}}
+
+\newcommand{\dii}{{\mathcal{D}_\mathrm{i}}}
+\newcommand{\djj}{{\mathcal{D}_\mathrm{j}}}
+\newcommand{\fij}{{\mathcal{F}_\mathrm{ij}}}
+\newcommand{\pdi}{{\partial\mathcal{D}_\mathrm{i}}}
+\newcommand{\pdj}{{\partial\mathcal{D}_\mathrm{j}}}
+
+\newcommand{\boldd}{{\bf D}}
+
+\newcommand{\nido}{\vec{n}_\mathrm{i}\cdot\ome}
+\newcommand{\absnido}{\left|\nido\right|}
+\newcommand{\ndo}{\vec{n}\cdot\ome}
+\newcommand{\absndo}{\left|\ndo\right|}
+
+\newcommand{\rbd}{R_\mathrm{b}}
+\newcommand{\gma}{\Gamma}
+\newcommand{\gb}{\Gamma_\mathrm{b}}
+
+\newcommand{\slim}[1]{\sum\limits_{\tiny#1}}
+\newcommand{\sliminf}[1]{\sum\limits_{#1}^\infty}
+\newcommand{\dint}{\int\limits_{4\pi}d\Omega\ \int\limits_\mathcal{D}dV\ }
+\newcommand{\sttone}{\sigma_\mathrm{t1}}
+\newcommand{\sttwo}{{\sigma_\mathrm{t2}}}
+\newcommand{\saone}{{\sigma_\mathrm{a1}}}
+\newcommand{\satwo}{{\sigma_\mathrm{a2}}}
+\newcommand{\sone}{{\mathcal{F}_\mathrm{1}}}
+\newcommand{\stwo}{{\mathcal{F}_\mathrm{2}}}
+\newcommand{\bone}{{\mathbf{B}_\mathrm{1}}}
+\newcommand{\btwo}{{\mathbf{B}_\mathrm{2}}}
+\newcommand{\gammal}{{{\Gamma}_\mathrm{l}}}
+\newcommand{\gammar}{{{\Gamma}_\mathrm{r}}}
+\newcommand{\muz}{\mu_0}
+\newcommand{\ms}{\mathcal{S}}
+\newcommand{\mf}{\mathcal{F}}
+\newcommand{\lo}{L$_1$}
+\newcommand{\intfpd}{\int\limits_{4\pi}\dome\ \int\limits_\mathcal{D}d\vec{r}\ }
+\newcommand{\intfppd}{\int\limits_{4\pi}\dome\ \int\limits_{\pd}ds\ }
+\newcommand{\intd}{\int\limits_\mathcal{D}d\vec{r}\ }
+%\newcommand{\qs}{q_\mathrm{s}}
+\newcommand{\qs}{\left(\mathcal{S}\psi+\frac{Q}{\fp}\right)}
+\newcommand{\qsi}{\left(\mathcal{S}_\mathrm{i}\psi_\mathrm{i}+\frac{Q_\mathrm{i}}{\fp}\right)}
+\newcommand{\qsinp}{\mathcal{S}_\mathrm{i}\psi_\mathrm{i}+\frac{Q_\mathrm{i}}{\fp}}
+
+\newcommand{\qsnp}{\mathcal{S}\psi+\frac{Q}{\fp}}
+\newcommand{\ome}{\vec{\Omega}}
+\newcommand{\psil}{\psi^\mathrm{LS}}
+\newcommand{\ji}{j^\mathrm{in}}
+\newcommand{\jo}{j^\mathrm{out}}
+
+\newcommand{\rp}{\right)}
+\newcommand{\rpd}{\right)_\mathcal{D}}
+\newcommand{\rpdi}{\right)_{\mathcal{D}_\mathrm{i}}}
+
+\newcommand{\lb}{\left<}
+\newcommand{\rbp}{\right>^+_\mathcal{\pd}}
+\newcommand{\rbm}{\right>^-_\mathcal{\pd}}
+\newcommand{\rb}{\right>}
+\newcommand{\rbi}{\right>_{\partial\mathcal{D}_\mathrm{i}}}
+\newcommand{\nodo}{\vec{n}_1\cdot\ome}
+\newcommand{\ntdo}{\vec{n}_2\cdot\ome}
+\newcommand{\absnodo}{\left|\vec{n}_1\cdot\ome\right|}
+\newcommand{\absntdo}{\left|\vec{n}_2\cdot\ome\right|}
+
+%chapter 4 asymptotics fpn
+\newcommand{\pat}[1]{\frac{1}{c}\frac{\partial {#1}}{\partial t}}
+\newcommand{\tpt}[1]{\frac{\partial {#1}}{\partial t}}
+\newcommand{\pax}[1]{\frac{\partial{#1}}{\partial x}}
+
+%\hypersetup{
+%    bookmarks=true,         % show bookmarks bar?
+%    unicode=false,          % non-Latin characters in Acrobat's bookmarks
+%    pdftoolbar=true,        % show Acrobat's toolbar?
+%    pdfmenubar=true,        % show Acrobat's menu?
+%    pdffitwindow=false,     % window fit to page when opened
+%    pdfstartview={FitH},    % fits the width of the page to the window
+%    pdftitle={Dissertation},    % title
+%    pdfauthor={Yaqi Wang},     % author
+%    pdfsubject={Transport AMR},   % subject of the document
+%    pdfcreator={Yaqi Wang},   % creator of the document
+%    pdfproducer={Yaqi Wang}, % producer of the document
+%    pdfkeywords={Transport, AMR}, % list of keywords
+%    pdfnewwindow=true,      % links in new window
+%    colorlinks=false,       % false: boxed links; true: colored links
+%    linkcolor=red,          % color of internal links
+%    citecolor=green,        % color of links to bibliography
+%    filecolor=magenta,      % color of file links
+%    urlcolor=cyan           % color of external links
+%}
+
+% prepare generating nomenclature and change default options
+%\makenomenclature
+%\renewcommand{\nomname}{NOMENCLATURE}
+%\RequirePackage{ifthen}
+%\renewcommand{\nomgroup}[1]{%
+%\item[]\hspace*{-\leftmargin}%
+%%\rule[2pt]{0.45\linewidth}{1pt}%
+%%\hfill
+%\ifthenelse{\equal{#1}{A}}{\textbf{Abbreviations}}{%
+%\ifthenelse{\equal{#1}{S}}{\textbf{Symbols}}{
+%\ifthenelse{\equal{#1}{U}}{\textbf{Superscripts}}{
+%\ifthenelse{\equal{#1}{V}}{\textbf{Subscripts}}{}}}}
+%%\hfill
+%%\rule[2pt]{0.45\linewidth}{1pt}
+%}
+\newcommand{\mdd}{\md_\mathrm{d}}
+\newcommand{\mdc}{\md_\mathrm{c}}
+\newcommand{\vc}{v_\mathrm{c}}
+\newcommand{\vd}{v_\mathrm{d}}
+\newcommand{\mvc}{\mv_\mathrm{c}}
+\newcommand{\mvd}{\mv_\mathrm{d}}
+\newcommand{\psic}{\psi_\mathrm{c}}
+\newcommand{\psid}{\psi_\mathrm{d}}
+\newcommand{\pstc}{\pst_\mathrm{c}}
+\newcommand{\pstd}{\pst_\mathrm{d}}
+\newcommand{\pstmd}{\psi^{*-}_\mathrm{c}}
+\newcommand{\pstpd}{\psi^{*+}_\mathrm{d}}
+\newcommand{\ncdo}{\vec{n}_\mathrm{c}\cdot\ome}
+\newcommand{\nkdo}{\vec{n}_\mathrm{K}\cdot\ome}
+\newcommand{\nddo}{\vec{n}_\mathrm{d}\cdot\ome}
+\newcommand{\absncdo}{\left|\ncdo\right|}
+\newcommand{\absnddo}{\left|\nddo\right|}
+\newcommand{\absnkdo}{\left|\nkdo\right|}
+\newcommand{\invst}{\frac{1}{\st}}
+\newcommand{\qrmsc}{q_\mathrm{s,c}}
+\newcommand{\qrmsd}{q_\mathrm{s,d}}
+
+% a new environment for splitting a long algorithm
+\makeatletter
+\newenvironment{breakalgo}[2][alg:\thealgorithm]{%
+	\def\@fs@cfont{\bfseries}%
+	\let\@fs@capt\relax%
+	\par\noindent%
+	\medskip%
+	\rule{\linewidth}{.8pt}%
+	\vspace{-20pt}%
+	%\par\noindent
+	\captionof{algorithm}{#2}\label{#1}%
+	\vspace{-1.2\baselineskip}%
+	%  \noindent\rule{\linewidth}{.4pt}%
+	\vspace{8pt}%
+	\noindent\rule{\linewidth}{.4pt}%
+	\vspace{-1.3\baselineskip}%
+}{%
+\vspace{-.75\baselineskip}%
+\par\noindent%
+\rule{\linewidth}{.4pt}%
+\medskip%
+}
+\makeatother
+
+\providecommand{\keywords}[1]{\textbf{\textit{Keywords: }} #1}
