@@ -1,8 +1,51 @@
 \section{Meshing Capability}
-\begin{frame}{optionally give it a frame name}
-	\begin{block}{optioanlly give it a block name}
+\begin{frame}{Homogenized and pin-resolved meshing capability in parallel}
+	\begin{block}{BART was initially implemented for homogenized mesh}
 		\begin{itemize}
-			\item Fill this section up.
+			\item Hyper-rectangle meshing based on \ttt{deal.II}:
+			\begin{itemize}
+				\item Lines in 1D, rectangles in 2D and regular cuboid in 3D
+				\item Material ID assigned to coarsest mesh and stored in cell objects tractable when refining
+			\end{itemize}
 		\end{itemize}
 	\end{block}
+	\begin{block}{Pin-resolved meshing}
+		\begin{itemize}
+			\item Recent development enables the use of pin-resolved mesh
+			\begin{itemize}
+				\item Rectangular (prism) pin is supported; hexagonal (prism) pin is under development
+				\item {\bf Goodness:} meshing does {\bf NOT} depend on \ttt{Cubit} or \ttt{gmsh}. \ttt{BART} realizes wrapper functions based on \ttt{deal.II} to draw complex geometries.
+			\end{itemize}
+			\item We compose different pin models and replicate based on pin types in 2D.
+			\item 3D meshes is realized by extruding 2D mesh.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Pin-resolved mesh demos}
+	\begin{figure}
+		\includegraphics*[scale=0.33]{graphic/mesh/hex-pin}
+		~
+		\includegraphics*[scale=0.3]{graphic/mesh/rods-3d}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Meshing in Parallel}
+	\begin{block}{Distributed triangulation}
+		\begin{itemize}
+			\item Triangulation (meshing) needs to support parallelism for parallel computations.
+			\item \ttt{deal.II} supports two ways of triangulation in parallel
+			\begin{itemize}
+				\item Shared (\ttt{ParMETIS} based): every processor has a copy of the global triangulation.
+				\item Distributed (\ttt{p4est} based): every processor only knows cells living on itself and a layer of neighboring cells from other processors on the local triangulation boundary
+			\end{itemize}
+			\item \ttt{BART} supports distributed meshing from \ttt{deal.II}.
+			\item 1D meshing is serial as \ttt{deal.II} has no parallel support
+		\end{itemize}
+	\end{block}
+	\begin{figure}
+		\includegraphics*[scale=0.25]{graphic/mesh/distributed-mesh}
+		~
+		\includegraphics*[scale=0.45]{graphic/mesh/decomp-solu}
+	\end{figure}
 \end{frame}
