@@ -1,8 +1,32 @@
-\section{Unit Testing, Continuous Integration and Code Coverage}
-\begin{frame}{optionally give it a frame name}
-\begin{block}{optioanlly give it a block name}
-\begin{itemize}
-\item Fill this section up.
-\end{itemize}
-\end{block}
+\section[Unit Testing, documentation Continuous Integration and Code Coverage]{Testing}
+\begin{frame}{Unit testing and documentation}
+	\begin{block}{We document and test everything possible}
+		\begin{itemize}
+			\item We rewrote \ttt{BART} twice:
+			\begin{itemize}
+					\item First time, we restructured \ttt{BART} and documented everything with \ttt{doxygen}.
+					\item Second time, we added unit testing.
+			\end{itemize}
+			\item Philosophy: everything be documented and every function/class be tested if possible.
+			\begin{itemize}
+				\item Documentation leads to better understandability of code in the future development.
+				\item Unit testing ensures new codes do not affect correctness of existing code.
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{G(oogle)Test and CTest are both used}
+		\begin{itemize}
+			\item We want unit testing to be efficient and compatible with MPI
+			\begin{itemize}
+				\item GTest is super efficient but hard to obtain compatibility with MPI.
+				\item CTest is slow but compatible with MPI.
+			\end{itemize}
+			\item Not all the testings require MPI
+			\begin{itemize}
+				\item We use GTest for all serial testing
+				\item We leave all MPI related testings to CTest.
+			\end{itemize}
+		\end{itemize}
+	\end{block}
 \end{frame}
