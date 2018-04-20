@@ -1,0 +1,26 @@
+\section{Parallelism/Linear Algebra/Meshing}
+%\subsection{Parallelism}
+\begin{frame}{\ttt{BART} is designed/implemented to be a parallel code}
+	\begin{block}{\ttt{BART} computes on distributed memory}
+		\begin{itemize}
+			\item Message Passing Interface, aka \ttt{MPI}, is used for distributed computations.
+			\item Meshing is correspondingly distributed based on \ttt{p4est}'s functionality wrapped by \ttt{deal.II}.
+			\begin{itemize}
+				\item Each processor mainly knows mesh cells on itself
+			\end{itemize}
+			\item Linear algebra related objects are distributed as well
+			\begin{itemize}
+				\item \ttt{PETSc} data structure wrappers in \ttt{deal.II} are heavily used to enable the parallel linear algebra.
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{\ttnc{BART} is parallelizing in space}
+		\begin{itemize}
+			\item While extending parallelism to be suitable for other dimensions in phase space, we currently only parallelize in space
+			\begin{itemize}
+				\item No special treatment on MPI/scheduling, natural support from \ttt{deal.II}
+			\end{itemize}
+			\item Computational efficiency in parallel rather depends on solvers/preconditioners, but little on the mesh
+		\end{itemize}
+	\end{block}
+\end{frame}

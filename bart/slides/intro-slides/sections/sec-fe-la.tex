@@ -1,38 +1,4 @@
-\section{Finite Elements and Linear Algebra}
-\begin{frame}[fragile]
-	\frametitle{Finite elements in \ttt{BART}}
-	\begin{block}{Finite elements in general dimensions}
-		\begin{itemize}
-			\item \ttt{deal.II} supports finite elements in general dimensions by templates
-			\begin{itemize}
-				\item \ttt{BART} developers only need to call generic trial functions when implementing weak forms for 1/2/3 D
-				\item Specs of trial functions are hidden under the hood by \ttt{deal.II} for different dimensions.
-			\end{itemize}
-			\item \ttt{BART} supports DFEM, CFEM, FV and RTk.
-			\begin{itemize}
-				\item For high-order-low-order (HOLO), \ttt{BART} can assign individual finite elements to different equations.
-				\item All you need to do is to tell \ttt{BART} in input file:
-				{
-					\color{red}
-					\begin{verbatim}
-					set ho spatial discretization = cfem
-					set nda spatial discretization = dfem
-					\end{verbatim}
-				}
-			\end{itemize}
-			\item Polynomial orders can be changed in input file as well (see the following demos for Q1(left), Q2(middle) and Q4(right) trial functions)
-		\end{itemize}
-	\end{block}
-	\begin{figure}
-		\includegraphics*[scale=0.25]{graphic/fe/q1_fe}
-		~
-		\includegraphics*[scale=0.23]{graphic/fe/q2_fe}
-		~
-		\includegraphics*[height=.25\textwidth]{graphic/fe/q4_fe}
-	\end{figure}
-\end{frame}
-
-\begin{frame}{Linear algebra in \ttt{BART}}
+\begin{frame}{Linear algebra in \ttnc{BART}}
 	\begin{block}{Sparse matrix-vector product based computations}
 		\begin{itemize}
 			\item Current implementation of \ttt{BART} assembles global matrices and utilize sparse matrix-vector product in linear algebraic solvers.
@@ -42,7 +8,7 @@
 			\end{itemize}
 		\end{itemize}
 	\end{block}
-	\begin{block}{\ttt{BART} is interfaced with \ttt{PETSc}}
+	\begin{block}{\ttnc{BART} is interfaced with \ttnc{PETSc}}
 		\begin{itemize}
 			\item Most \ttt{PETSc} solvers/preconditioners wrapped in \ttt{deal.II} are used in \ttt{PreconditionerSolver} class of \ttt{BART}
 			\begin{itemize}

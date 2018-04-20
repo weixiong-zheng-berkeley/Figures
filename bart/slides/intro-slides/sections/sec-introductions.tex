@@ -1,8 +1,88 @@
 \section{Introductions}
-\begin{frame}{optionally give it a frame name}
-	\begin{block}{optioanlly give it a block name}
+\begin{frame}{What is \ttt{BART}?}
+	\begin{block}{A open-source research-purpose code}
 		\begin{itemize}
-			\item Fill this section up.
+			\item We hold \ttt{BART} on Github with MIT license.
+			\item We build \ttt{BART} to be a research-purpose transport code.
+			\item We aim to provide a framework s.t. graduate students only need necessary amount of knowledge on \ttnc{C++} and third-party libraries to implement new ideas for research
+		\end{itemize}
+	\end{block}
+	\begin{block}{A finite element code based on \ttt{deal.II}}
+		\begin{itemize}
+			\item We build \ttt{BART} to be a finite element code based on \ttt{deal.II}
+			\begin{itemize}
+				\item Finite element is wired-shape mesh friendly
+				\item \ttt{BART} computes in general dimension as \ttt{deal.II} does.
+				\item \ttt{BART} only call generic functions instead of dimension specified ones.
+			\end{itemize}
+			\item Any specs of finite elements are wrapped by \ttt{deal.II} s.t. \ttt{BART} developers focus only on physical/symbolically mathematical aspects.
+		\end{itemize}
+	\end{block}
+	\begin{block}{A code in parallel}
+		\begin{itemize}
+			\item We build \ttt{BART} to be a parallel code computing on distributed memory
+			\begin{itemize}
+				\item Even small-size problems (<10 million DoFs) can be overwhelming for local computers
+			\end{itemize}
+			\item It is natural to enable parallelism as \ttt{deal.II} has nice wrappers.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Finite elements in \ttt{BART}}
+	\begin{block}{Finite elements in general dimensions}
+		\begin{itemize}
+			\item \ttt{deal.II} supports finite elements in general dimensions by templates
+			\begin{itemize}
+				\item \ttt{BART} developers only need to call generic trial functions when implementing weak forms for 1/2/3 D
+				\item Specs of trial functions are hidden under the hood by \ttt{deal.II} for different dimensions.
+			\end{itemize}
+			\item \ttt{BART} supports DFEM, CFEM, FV and RTk.
+			\begin{itemize}
+				\item For high-order-low-order (HOLO), \ttt{BART} can assign individual finite elements to different equations.
+				\item All you need to do is to tell \ttt{BART} in input file:
+				{
+					\color{red}
+					\begin{verbatim}
+					set ho spatial discretization = cfem
+					set nda spatial discretization = dfem
+					\end{verbatim}
+				}
+			\end{itemize}
+			\item Polynomial orders can be changed in input file as well (see the following demos for Q1(left), Q2(middle) and Q4(right) trial functions)
+		\end{itemize}
+	\end{block}
+	\begin{figure}
+		\includegraphics*[scale=0.25]{graphic/fe/q1_fe}
+		~
+		\includegraphics*[scale=0.23]{graphic/fe/q2_fe}
+		~
+		\includegraphics*[height=.25\textwidth]{graphic/fe/q4_fe}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{What can \ttt{BART} do?}
+	\begin{block}{What approximations can \ttt{BART} have?}
+		\begin{itemize}
+			\item Transport approximations that can be decoupled to individual equations
+			\begin{itemize}
+				\item Discrete ordinates approximation
+				\item Diffusion equations
+				\item Canonical form of simplified spherical harmonics (SPN)
+			\end{itemize}
+			\item PN is feasible through extension of current framework.
+		\end{itemize}
+	\end{block}
+	\begin{block}{Solve small-to-median-sized problems}
+		\begin{itemize}
+			\item A transport code doing all real-world large problems with billions/trillions of degrees of freedom is charming, {\tt BUT}
+			\begin{itemize}
+				\item It can require tens/hundreds of man-year of work.
+				\item It requires tons of optimizations.
+				\item It is hard for newbies to get started
+			\end{itemize}
+			\item We restrict \ttt{BART} to small (e.g. one-group) to median sized problems (e.g. C5G7)
 		\end{itemize}
 	\end{block}
 \end{frame}
