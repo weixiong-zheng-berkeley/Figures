@@ -1,8 +1,106 @@
 \section{Equations/Discretizations}
-\begin{frame}{Equations we are solving}
-	\begin{block}{We are solving second-order forms of}
+\begin{frame}{Equations \ttnc{BART} solves transport equation}
+	\begin{block}{\ttnc{BART} is solving multi-group transport equation with discrete-ordinates in angle}
 		\begin{itemize}
-			\item Fill this section up.
+			\item Transport equation in operator form with:
+			\begin{align}
+			&\bfscr{T}_\mm{g,m}\psigm+\bfscr{C}_\mm{g,m}\psigm=\sum\limits_{\substack{1\leq\mm{g'}\leq\mm{G}\\1\leq\mm{m'}\leq\mm{M}}}\left(\bfscr{S}_{\mm{g',m'}\to\mm{g,m}}+\bfscr{F}_{\mm{g',m'}\to\mm{g,m}}\right)\psigmp\\
+			&\psigm=\psigm^\mm{inc},\ \vr\in\pd,\ \ndom<0\nno
+			\end{align}
+%			\begin{center}
+				$\bfscr{T}$: Streaming operator\\
+				$\bfscr{C}$: Collision operator, $\sigt$\\
+				$\bfscr{S}$: Scattering operator\\
+				$\bfscr{F}$: Fission operator\\
+				$\bfscr{\psi}$: Angular flux\\
+				$\mm{g,\ g'}$: Group indicies\\
+				$\mm{m,\ m'}$: Angular indices\\
+				$\mm{G,\ M}$: Numbers of groups and directions
+%			\end{center}
+			\item The formulation generalizes to diffusion and nonlinear diffusion
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{\ttnc{BART} solves first-order form of transport equations}
+	\begin{block}{First-order form and DFEM discretization in space}
+		\begin{itemize}
+			\item Transport equation has differential order of 1\ in the streaming term, we refer it to as ``first-order" form (FOF) 
+			\begin{align}
+				\ome_\mm{m}\cdot\nabla\psigm+\sigma_{\mm{t,g}}\psigm=\mathcal{Q}_\mm{g,m}\left({\bf \Psi}\right)
+			\end{align}
+			\begin{align}
+			   \mq_\mm{g,m}:=\sum\limits_{\substack{1\leq\mm{g'}\leq\mm{G}\\1\leq\mm{m'}\leq\mm{M}}}\left(\bfscr{S}_{\mm{g',m'}\to\mm{g,m}}+\bfscr{F}_{\mm{g',m'}\to\mm{g,m}}\right)\psigmp
+			\end{align}
+			\item FOF is discretized using DFEM in \ttt{BART}: given polynomial function space $\mv$,\ $\forall\psigm^*\in\mv$,\ find $\psigm\in\mv$,\ s.t.
+			\begin{align}
+			\sum\limits_{\mm{e}\in\md}\left[\left(-\omemn\psigms,\psigm\right)+\left(\psigms,\sigtg\psigm\right)\right]_\mm{e}+\sum\limits_{\mm{f}\in\md}\left|\ndom\right|\left<\jjump{\psigms},\tilde{\psi}_\mm{g,m}\right>_\mm{f}\nno\\
+			+\sum\limits_{\substack{\mm{f}\in\pd\\\ndom>0}}\ndom\left<\psigms,\psigm\right>_\mm{f}=\sum\limits_{\mm{e}\in\md}\left(\psigms,\mqgm\right)_\mm{e}+\sum\limits_{\substack{\mm{f}\in\pd\\\ndom<0}}\absndom\left<\psigms,\psigm^\mm{inc}\right>_\mm{f}
+			\end{align}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{\ttnc{BART} solves second-order forms of transport equations}
+	\begin{block}{Second-order forms (SOF) of transport equations}
+		\begin{itemize}
+			\item FOF can be cast to diffusion-like equations having streaming term with differential order of 2
+			\item The casting allows for use of CFEM
+			\item BART solves even-parity equation and self-adjoint angular flux equation (SAAF)
+		\end{itemize}
+	\end{block}
+	\begin{block}{SOF example: SAAF}
+		\begin{itemize}
+			\item SAAF equation
+			\begin{align}
+				-\omemn\frac{1}{\sigtg}\omemn\psigm+\sigtg\psigm=\mqgm-\frac{1}{\sigtg}\omemn\mqgm
+			\end{align}
+			\item CFEM discretization
+			\begin{align}
+				\left(\omemn\psigms,\frac{1}{\sigtg}\omemn\psigm\right)_\md+\left(\psigms,{\sigtg}\psigm\right)_\md+\sum\limits_{\substack{\mm{f}\in\pd\\\ndom>0}}\ndom\left<\psigms,\psigm\right>_\mm{f}\nno\\
+				=\left(\psigms+\frac{\omemn\psigms}{\sigtg},\mqgm\right)_\mm{\md}+\sum\limits_{\substack{\mm{f}\in\pd\\\ndom<0}}\absndom\left<\psigms,\psigm^\mm{inc}\right>_\mm{f}
+			\end{align}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{\ttnc{BART} solves diffusion and nonlinear diffusion}
+	\begin{block}{BART solves diffusion equation}
+		\begin{itemize}
+			\item Diffusion could be solved within the framework of \ttt{BART}
+			\begin{equation}
+				-\nabla\frac{1}{3\sigtg}\cdot\nabla\phig+\sigtg\phig=\mq_\mm{g}:=\sum\limits_\mm{g'}\left[\left(\sigsgg+\frac{\chig\nu\sigma_\mm{f,g'}}{k_\mm{eff}}\right)\phigp\right]
+			\end{equation}
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Nonlinear diffusion for acceleration (NDA)}
+		\begin{itemize}
+			\item Diffusion can also be written in P$_1$\ form
+			\begin{equation}
+			\nabla\cdot\vec{J}_\mm{g}+\sigtg\phig=\mq_\mm{g},\quad\vec{J}_\mm{g}=-\frac{1}{3\sigtg}\nabla\phi_\mm{g}\ (\mm{Fick's\ law})
+			\end{equation}
+			\item NDA is derived from correcting Fick's law using transport corrections
+			\item \boxed{Correction} to preserve current is derived from transport high-order solutions (HO)
+			\begin{equation}
+				\vec{J}_\mm{g}=-\frac{1}{3\sigtg}\nabla\phi_\mm{g}+\boxed{\frac{\sum\limits_{\mm{m}<M}w_\mm{m}\ome_\mm{m}\omemn\psigm^\mm{HO}+\frac{1}{3\sigtg}\nabla\phi_\mm{g}^\mm{HO}}{\phi_\mm{g}^\mm{HO}}\phi}
+			\end{equation}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{\ttnc{BART} solves diffusion and nonlinear diffusion (cont'd)}
+	\begin{block}{\ttnc{BART} solves in multiple ways}
+		\begin{itemize}
+			\item CFEM is natural to use to solve diffusion/nonlinear diffusion
+			\item DFEM is realizable through penalty method
+			\begin{itemize}
+				\item Useful when accelerating transport solves with DFEM
+			\end{itemize}
+			\item A hybrid-FEM is a near-future project for NDA in P$_1$-like form
+			\begin{itemize}
+				\item Piece-wise constant test function for $\phig$\ while Raviat-Thomas test functions for $\vec{J}_\mm{g}$
+			\end{itemize}
 		\end{itemize}
 	\end{block}
 \end{frame}
